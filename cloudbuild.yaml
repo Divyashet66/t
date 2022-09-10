@@ -35,7 +35,7 @@ steps:
   name: 'gcr.io/tech-rnd-project/binauthz-attestation:latest'
   args:
     - '--artifact-url'
-    - 'gcr.io/tech-rnd-project/hello-world:latest'
+    - 'gcr.io/tech-rnd-project/nginx'
     - '--attestor'
     - 'projects/tech-rnd-project/attestors/my-binauthz-attestor'
     - '--keyversion'
