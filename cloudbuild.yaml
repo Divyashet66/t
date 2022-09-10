@@ -3,15 +3,17 @@ steps:
 - name: "gcr.io/cloud-builders/docker"
   args: ["build", "-t", "gcr.io/tech-rnd-project/hello-world:latest", "."]
   # push container image
+- name: "gcr.io/cloud-builders/docker"
+args: ["push", "gcr.io/tech-rnd-project/hello-world:latest"]
 - name: gcr.io/cloud-builders/docker
-    entrypoint: /bin/bash
-    args:
-    - -c
-    - |
-      docker push gcr.io/tech-rnd-project/hello-world:latest &&
-      docker image inspect gcr.io/tech-rnd-project/hello-world:latest --format '{{index .RepoDigests 0}}' > image-digest.txt &&
-      cat image-digest.txt
-    id: push
+  entrypoint: /bin/bash
+  args:
+  - -c
+  - |
+    docker push gcr.io/tech-rnd-project/hello-world:latest &&
+    docker image inspect gcr.io/tech-rnd-project/hello-world:latest --format '{{index .RepoDigests 0}}' > image-digest.txt &&
+    cat image-digest.txt
+  id: push
   
 - name: gcr.io/tech-rnd-project/kritis-signer
   entrypoint: /bin/bash
