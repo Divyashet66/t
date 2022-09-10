@@ -4,7 +4,7 @@ steps:
   args: ["build", "-t", "gcr.io/tech-rnd-project/hello-world:latest", "."]
   # push container image
 - name: "gcr.io/cloud-builders/docker"
-args: ["push", "gcr.io/tech-rnd-project/hello-world:latest"]
+  args: ["push", "gcr.io/tech-rnd-project/hello-world:latest"]
 - name: gcr.io/cloud-builders/docker
   entrypoint: /bin/bash
   args:
