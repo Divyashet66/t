@@ -6,6 +6,22 @@ steps:
 - name: "gcr.io/cloud-builders/docker"
   args: ["push", "gcr.io/tech-rnd-project/hello-world:latest"]
   
+- name: gcr.io/tech-rnd-project/kritis-signer
+  entrypoint: /bin/bash
+  args:
+  - -c
+  - |
+    /kritis/signer \
+    -v=10 \
+    -alsologtostderr \
+    -image=$(/bin/cat image-digest.txt) \
+    -policy=./vulnz-signing-policy.yaml \
+    -kms_key_name=${_KMS_KEY_NAME} \
+    -kms_digest_alg=${_KMS_DIGEST_ALG} \
+    -note_name=${_NOTE_NAME}
+  waitFor: ['push']
+  id: vulnsign
+    
 - id: 'create-attestation'
   name: 'gcr.io/tech-rnd-project/binauthz-attestation:latest'
   args:
@@ -22,3 +38,8 @@ steps:
   - --image=gcr.io/tech-rnd-project/hello-world:latest
   - --location=us-central1-a
   - --cluster=cluster-1
+  
+substitutions:
+ _KMS_KEY_NAME: projects/tech-rnd-project/locations/global/keyRings/binauthz-keys/cryptoKeys/codelab-key/cryptoKeyVersions/1
+ _KMS_DIGEST_ALG: SHA256
+ _NOTE_NAME: projects/tech-rnd-project/notes/my-attestor-note 
