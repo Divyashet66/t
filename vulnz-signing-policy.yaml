@@ -6,6 +6,4 @@ spec:
   imageVulnerabilityRequirements:
     maximumFixableSeverity: MEDIUM
     maximumUnfixableSeverity: MEDIUM
-    allowlistCVEs:
-    - projects/goog-vulnz/notes/CVE-2020-14155
-    - projects/goog-vulnz/notes/CVE-2019-25013
+    
