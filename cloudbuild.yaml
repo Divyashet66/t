@@ -37,9 +37,9 @@ steps:
     - '--artifact-url'
     - 'gcr.io/tech-rnd-project/nginx'
     - '--attestor'
-    - 'projects/tech-rnd-project/attestors/my-binauthz-attestor'
+    - 'projects/tech-rnd-project/attestors/vuln-check'
     - '--keyversion'
-    - 'projects/tech-rnd-project/locations/global/keyRings/binauthz-keys/cryptoKeys/codelab-key/cryptoKeyVersions/1'
+    - 'projects/tech-rnd-project/locations/global/keyRings/kritis-signer-key-ring/cryptoKeys/kritis-signer-key/cryptoKeyVersions/1'
   # deploy container image to GKE
 - name: "gcr.io/cloud-builders/gke-deploy"
   args:
@@ -49,6 +49,6 @@ steps:
   - --cluster=cluster-1
   
 substitutions:
- _KMS_KEY_NAME: projects/tech-rnd-project/locations/global/keyRings/binauthz-keys/cryptoKeys/codelab-key/cryptoKeyVersions/1
+ _KMS_KEY_NAME: projects/tech-rnd-project/locations/global/keyRings/kritis-signer-key-ring/cryptoKeys/kritis-signer-key/cryptoKeyVersions/1
  _KMS_DIGEST_ALG: SHA256
- _NOTE_NAME: projects/tech-rnd-project/notes/my-attestor-note 
+ _NOTE_NAME: projects/tech-rnd-project/notes/vuln-check-note
