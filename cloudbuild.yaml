@@ -35,11 +35,12 @@ steps:
   name: 'gcr.io/tech-rnd-project/binauthz-attestation:latest'
   args:
     - '--artifact-url'
-    - 'gcr.io/tech-rnd-project/nginx'
+    - 'gcr.io/tech-rnd-project/hello-world:latest'
     - '--attestor'
     - 'projects/tech-rnd-project/attestors/my-binauthz-attestor'
     - '--keyversion'
     - 'projects/tech-rnd-project/locations/global/keyRings/binauthz-keys/cryptoKeys/codelab-key/cryptoKeyVersions/1'
+    
   # deploy container image to GKE
 - name: "gcr.io/cloud-builders/gke-deploy"
   args:
