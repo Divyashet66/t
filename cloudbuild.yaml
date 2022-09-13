@@ -37,7 +37,7 @@ steps:
     - '--artifact-url'
     - 'gcr.io/tech-rnd-project/nginx'
     - '--attestor'
-    - 'projects/tech-rnd-project/attestors/my-attestor-note'
+    - 'projects/tech-rnd-project/attestors/my-binauthz-attestor'
     - '--keyversion'
     - 'projects/tech-rnd-project/locations/global/keyRings/binauthz-keys/cryptoKeys/codelab-key/cryptoKeyVersions/1'
   # deploy container image to GKE
